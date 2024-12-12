@@ -6,7 +6,10 @@ import ThemeSwitch from './components/ThemeSwitch';
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
 
   const changeTheme = () => {
     // si (theme="light") es true, cambia a dark
@@ -14,16 +17,20 @@ function App() {
     const newTheme = (theme === "light") ? "dark" : "light"; 
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
-  }
+  };
 
   const addTask = (task) => {
     setTasks([...tasks, task]);
-  }
+  };
 
   // Aplica el atributo dark-theme en la raíz del documento HTML
   useEffect(()=>{
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <>
