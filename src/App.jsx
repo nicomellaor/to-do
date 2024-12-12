@@ -1,18 +1,34 @@
 import './App.css';
 import TaskInput from "./components/TaskInput"
 import TaskList from "./components/TaskList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ThemeSwitch from './components/ThemeSwitch';
 
 function App() {
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [tasks, setTasks] = useState([]);
+
+  const changeTheme = () => {
+    // si (theme="light") es true, cambia a dark
+    // si es false, se mantiene "light"
+    const newTheme = (theme === "light") ? "dark" : "light"; 
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  }
 
   const addTask = (task) => {
     setTasks([...tasks, task]);
   }
 
+  // Aplica el atributo dark-theme en la raíz del documento HTML
+  useEffect(()=>{
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   return (
     <>
       <h1>To-Do List</h1>
+      <ThemeSwitch theme={theme} changeTheme={changeTheme}/>
       <TaskInput onAdd={addTask}/>
       <h2>Tareas Pendientes</h2>
       <TaskList tasks={tasks}/>

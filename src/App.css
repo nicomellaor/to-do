@@ -3,3 +3,40 @@
     max-width: 1320px;
     margin: 0 auto;
 }
+
+[data-theme="dark"] {
+    --input-bg: #333;
+    --input-text: #f0f0f0;
+    --input-border: #555;
+    --checkbox-color: #007bff;
+    --placeholder-color: #bbb;
+}
+
+[data-theme="light"] {
+    --input-bg: white;
+    --input-text: black;
+    --input-border: #ccc;
+    --checkbox-color: #007bff;
+    --placeholder-color: #999;
+}
+
+.form-control {
+    background-color: var(--input-bg) !important;
+    color: var(--input-text) !important;
+    border: 1px solid var(--input-border) !important;
+}
+
+.form-control::placeholder {
+    color: var(--placeholder-color) !important;
+}
+
+.form-check-input {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+  }
+
+.form-check-input:checked {
+    background-color: var(--checkbox-color) !important;
+    border-color: var(--checkbox-color) !important;
+    accent-color: var(--checkbox-color) !important;
+}
