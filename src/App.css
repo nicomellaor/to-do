@@ -10,6 +10,7 @@
     --input-border: #555;
     --checkbox-color: #007bff;
     --placeholder-color: #bbb;
+    --edit-button-color: #f8f9fa;
 }
 
 [data-theme="light"] {
@@ -18,6 +19,7 @@
     --input-border: #ccc;
     --checkbox-color: #007bff;
     --placeholder-color: #999;
+    --edit-button-color: #0f0f0f;
 }
 
 .form-control {
@@ -40,3 +42,9 @@
     border-color: var(--checkbox-color) !important;
     accent-color: var(--checkbox-color) !important;
 }
+
+.custom-button:hover {
+    color: var(--edit-button-color) !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+  }

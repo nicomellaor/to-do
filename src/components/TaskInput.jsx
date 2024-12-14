@@ -7,7 +7,7 @@ function TaskInput({ onAdd }){
     const [input, setInput] = useState('');
 
     const handleSubmit = () => {
-        const task = {text: input, date: new Date()};
+        const task = {text: input, date: new Date().toLocaleString()};
         onAdd(task);
         setInput('');
     }

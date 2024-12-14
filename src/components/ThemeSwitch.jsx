@@ -5,10 +5,14 @@ function ThemeSwitch({theme, changeTheme}){
         <Form>
             <Form.Check
             type="switch"
-            label="Light/Dark mode"
+            label={
+                <>
+                <i className="bi bi-brightness-high-fill"></i> Light / <i className="bi bi-moon-fill"></i> Dark mode
+                </>
+            }
             checked={theme === "dark"}
             onChange={changeTheme}
-            />
+            ></Form.Check>
         </Form>
     )
 }
