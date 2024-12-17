@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 
-function TaskItem({ task, onEdit, onDelete }) {
+function TaskItem({ task, onEdit, onDelete, onCompletion }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newText, setNewText] = useState('');
   return (
@@ -43,7 +43,13 @@ function TaskItem({ task, onEdit, onDelete }) {
           <>
             <Form.Check 
               type="checkbox" 
-              label={task.text} 
+              checked={task.completed}
+              onChange={() => onCompletion(task.id)}
+              label={
+                <span className={task.completed ? "text-decoration-line-through" : ""}>
+                  {task.text}
+                </span>
+              } 
               className="me-3" 
             />
             <Button 

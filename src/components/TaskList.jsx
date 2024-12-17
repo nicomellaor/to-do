@@ -1,6 +1,6 @@
 import TaskItem from "./TaskItem"
 
-function TaskList({tasks, onDelete, onEdit}){
+function TaskList({tasks, onDelete, onEdit, onCompletion}){
     return(
         <div className="task-list">
             {tasks.toReversed().map((task, index) => (
@@ -9,6 +9,7 @@ function TaskList({tasks, onDelete, onEdit}){
                 task={task}
                 onDelete={onDelete}
                 onEdit={onEdit}
+                onCompletion={onCompletion}
                 />
             ))}
         </div>

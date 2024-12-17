@@ -12,8 +12,7 @@ function App() {
   });
 
   const changeTheme = () => {
-    // si (theme="light") es true, cambia a dark
-    // si es false, se mantiene "light"
+    // Operación Ternaria
     const newTheme = (theme === "light") ? "dark" : "light"; 
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
@@ -29,15 +28,24 @@ function App() {
   };
 
   const handleEdit = (id, newText) => {
-    let tasksModified = tasks.map(task => {
+    let updatedTasks = tasks.map(task => {
       if (task.id === id){
         return {...task, text: newText}
       }
       return task;
     })
-    setTasks(tasksModified);
+    setTasks(updatedTasks);
   };
 
+  const handleCompletion = (id) => {
+    let updatedTasks = tasks.map(task => {
+      if (task.id === id){
+        return {...task, completed: !task.completed}
+      }
+      return task;
+    })
+    setTasks(updatedTasks);
+  };
   // Aplica el atributo dark-theme en la raíz del documento HTML
   useEffect(()=>{
     document.documentElement.setAttribute("data-theme", theme);
@@ -53,7 +61,7 @@ function App() {
       <ThemeSwitch theme={theme} changeTheme={changeTheme}/>
       <TaskInput onAdd={addTask}/>
       <h2>Tareas Pendientes</h2>
-      <TaskList tasks={tasks} onDelete={handleDelete} onEdit={handleEdit}/>
+      <TaskList tasks={tasks} onDelete={handleDelete} onEdit={handleEdit} onCompletion={handleCompletion}/>
     </>
   )
 }
