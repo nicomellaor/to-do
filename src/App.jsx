@@ -23,6 +23,21 @@ function App() {
     setTasks([...tasks, task]);
   };
 
+  const handleDelete = (id) => {
+    let newTasks = tasks.filter(task => task.id !== id);
+    setTasks(newTasks);
+  };
+
+  const handleEdit = (id, newText) => {
+    let tasksModified = tasks.map(task => {
+      if (task.id === id){
+        return {...task, text: newText}
+      }
+      return task;
+    })
+    setTasks(tasksModified);
+  };
+
   // Aplica el atributo dark-theme en la raíz del documento HTML
   useEffect(()=>{
     document.documentElement.setAttribute("data-theme", theme);
@@ -38,7 +53,7 @@ function App() {
       <ThemeSwitch theme={theme} changeTheme={changeTheme}/>
       <TaskInput onAdd={addTask}/>
       <h2>Tareas Pendientes</h2>
-      <TaskList tasks={tasks}/>
+      <TaskList tasks={tasks} onDelete={handleDelete} onEdit={handleEdit}/>
     </>
   )
 }

@@ -2,12 +2,13 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 function TaskInput({ onAdd }){
     const [input, setInput] = useState('');
 
     const handleSubmit = () => {
-        const task = {text: input, date: new Date().toLocaleString()};
+        const task = {id: uuidv4(), text: input, date: new Date().toLocaleString()};
         onAdd(task);
         setInput('');
     }
