@@ -19,7 +19,9 @@ function App() {
   };
 
   const addTask = (task) => {
-    setTasks([...tasks, task]);
+    if (task.text.trim() !== ""){
+      setTasks([...tasks, task]);
+    }
   };
 
   const handleDelete = (id) => {
@@ -29,7 +31,7 @@ function App() {
 
   const handleEdit = (id, newText) => {
     let updatedTasks = tasks.map(task => {
-      if (task.id === id){
+      if (task.id === id && newText.trim() !== ""){
         return {...task, text: newText}
       }
       return task;
