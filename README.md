@@ -1,6 +1,5 @@
 # To-Do List App
+To-do list application that allows you to read, add, modify and delete pending activities.
 
-Aplicación de lista de tareas que permite leer, agregar, modificar y eliminar actividades pendientes.
-
-## Link
+## URL
 - https://nicomellaor.github.io/to-do/
